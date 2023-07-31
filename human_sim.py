@@ -13,16 +13,16 @@ bot_level = int(input())
 
 while bot_level < 0 or bot_level >= 3:
     print('Action illegal...')
-    bot_level = int(input('>> Re-choose bot level (integer): '))
+    bot_level = int(input('>> Re-choose bot level - 0: easy, 1: medium, 2: hard: '))
 
 agent_level = agent_levels[bot_level]
-agent_dir = f'trained_models/model_nfsp_{agent_level}'
+agent_dir = f'trained_pisti_models/model_nfsp_{agent_level}.pth'
 
 # Make environment
 env_name = 'pisti'
 seed = 42
 
-env = rlcard.make('pisti', config={'seed': 42,'playing_with_human':True, 'agent_level': agent_level})
+env = rlcard.make('pisti', config={'seed': seed,'playing_with_human':True, 'agent_level': agent_level})
 human_agent = HumanAgent(env.num_actions, print_pretty=True)
 nfsp_agent = torch.load(agent_dir)
 
