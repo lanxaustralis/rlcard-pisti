@@ -3,9 +3,9 @@ from rlcard.agents.human_agents.pisti_human_agent import HumanAgent
 from rlcard.agents import NFSPAgent
 import torch
 
-agent_levels = {0: ['easy', ''],
-                1: ['medium'],
-                2: ['hard', 'experiments/pisti-nfsp-both-nfsp-hard/model.pth']}
+agent_levels = {0: 'easy',
+                1: 'medium',
+                2: 'hard'}
 
 print(f'>> Please decide the bot level - 0: easy, 1: medium, 2: hard: ')
 
@@ -15,7 +15,8 @@ while bot_level < 0 or bot_level >= 3:
     print('Action illegal...')
     bot_level = int(input('>> Re-choose bot level (integer): '))
 
-agent_level, agent_dir = agent_levels[bot_level]
+agent_level = agent_levels[bot_level]
+agent_dir = f'trained_models/model_nfsp_{agent_level}'
 
 # Make environment
 env_name = 'pisti'
